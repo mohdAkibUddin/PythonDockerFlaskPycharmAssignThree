@@ -1,18 +1,13 @@
-# Project Description
-This project is a homework assignment to teach how to get Pycharm setup with Docker, Flask, MySQL, and Postman
-
-## Assignments
-* [Assignment 3](formIntro-pycharm.pdf)
-
-## Videos
-* [Video 3 - Assignment 3](https://youtu.be/5WBYxNZz8Zw)
-
-## Assignment 3 Readings
-* [More about Jinja Flask Templates](https://realpython.com/primer-on-jinja-templating/)
-* [Reference for Python MySQL - Note: We Use this with flask and on line 53 you can see how to adapt it to connect to the database connection through flask's single connection to mysql](https://www.w3schools.com/python/python_mysql_getstarted.asp)
-
-# Useful Links
-* [Flask Homepage and Documentation](https://flask.palletsprojects.com/en/1.1.x/)
-* [JSON Spec Reference](https://www.json.org/json-en.html)
-* [SimpleJSON Reference](https://simplejson.readthedocs.io/en/latest/)
-* [W3 Schools SQL Tutorial and Reference](https://www.w3schools.com/sql/)
+# ScreenShots
+### The project showing that you can view YOUR data tables in pycharm 
+![2a](screenshots/pycharmDataTables.png)</br></br>
+### YOUR project running correctly in the browser displaying your homepage with your data
+![2b](screenshots/homePageAllData.png)</br></br>
+### YOUR project running correctly in the browser displaying your data record as a view of one record
+![2c](screenshots/viewOfOneRecord.png)</br></br>
+### YOUR project running correctly in the browser displaying a new record added to your home page
+![2d](screenshots/newRecordAddedToHomePage.png)</br></br>
+### YOUR project running correctly in the browser displaying an updated record added to your homepage
+![2e](screenshots/homePageUpdatedRecord.png)</br></br>
+### YOUR project running correctly in the browser displaying a deleted record added to your homepage
+![2f](screenshots/homePageDeletedRecords.png)
