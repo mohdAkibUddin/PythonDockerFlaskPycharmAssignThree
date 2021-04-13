@@ -1,5 +1,5 @@
-CREATE DATABASE citiesData;
-use citiesData;
+CREATE DATABASE oscarsData;
+use oscarsData;
 
 CREATE TABLE IF NOT EXISTS oscar_age (
     `Index` INT,
