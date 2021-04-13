@@ -12,7 +12,7 @@ app.config['MYSQL_DATABASE_HOST'] = 'db'
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
 app.config['MYSQL_DATABASE_PORT'] = 3306
-app.config['MYSQL_DATABASE_DB'] = 'citiesData'
+app.config['MYSQL_DATABASE_DB'] = 'oscarsData'
 mysql.init_app(app)
 
 
@@ -90,7 +90,7 @@ def api_browse() -> str:
 @app.route('/api/v1/actors/<int:actor_id>', methods=['GET'])
 def api_retrieve(actor_id) -> str:
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM oscar_age WHERE Index=%s', actor_id)
+    cursor.execute('SELECT * FROM oscar_age WHERE `Index`=%s', actor_id)
     result = cursor.fetchall()
     json_result = json.dumps(result);
     resp = Response(json_result, status=200, mimetype='application/json')
@@ -99,19 +99,35 @@ def api_retrieve(actor_id) -> str:
 
 @app.route('/api/v1/actors/', methods=['POST'])
 def api_add() -> str:
+    content = request.json
+    cursor = mysql.get_db().cursor()
+    inputData = (content['Name'], content['Movie'], content['Age'], content['Year'], content['Index'])
+    sql_insert_query = """INSERT INTO oscar_age (`Name`, `Movie`, `Age`,`Year`, `Index`) VALUES (%s, %s,%s, %s, %s)"""
+    cursor.execute(sql_insert_query, inputData)
+    mysql.get_db().commit()
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
 @app.route('/api/v1/actors/<int:actor_id>', methods=['PUT'])
-def api_edit(actor_id) -> str:
+def api_edit() -> str:
+    content = request.json
+    cursor = mysql.get_db().cursor()
+    inputData = (content['Name'], content['Movie'], content['Age'], content['Year'], content['Index'])
+    sql_update_query = """UPDATE oscar_age t SET t.Name = %s, t.Movie = %s, t.Age = %s, t.Year = %s WHERE t.Index = %s"""
+    cursor.execute(sql_update_query, inputData)
+    mysql.get_db().commit()
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
-@app.route('/api/actors/<int:actor_id>', methods=['DELETE'])
+@app.route('/api/v1/actors/<int:actor_id>', methods=['DELETE'])
 def api_delete(actor_id) -> str:
-    resp = Response(status=210, mimetype='application/json')
+    cursor = mysql.get_db().cursor()
+    sql_delete_query = """DELETE FROM oscar_age WHERE `Index` = %s"""
+    cursor.execute(sql_delete_query, actor_id)
+    mysql.get_db().commit()
+    resp = Response(status=200, mimetype='application/json')
     return resp
 
 
